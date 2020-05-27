@@ -1,55 +1,111 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {Dimensions, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import LinksScreen from "./LinksScreen";
+import Cardsv from "./cards";
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
+class HomeScreen extends React.Component {
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
+    constructor(props) {
+      super(props);
+      this.state = {
+        loading: true,
+        data: [],
+        fav:[]
 
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
+      };
+      this.favourite=this.favourite.bind(this)
+    }
 
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
+
+
+        componentDidMount()
+        {
+          for (var i = 341; i <= 346; i++) {
+
+          fetch(`https://www.superheroapi.com/api.php/1340448086165241/${i}`)
+              .then(response => response.json())
+              .then((responseJson) => {
+
+                console.log(responseJson)
+                var joined = this.state.data.concat(responseJson);
+
+                this.setState({
+                  loading: false,
+                  data: joined
+                })
+              })
+
+
+        }
+
+      }
+
+  favourite(e){
+      console.log(this.state.fav)
+    var fjoined = this.state.fav.concat(e);
+
+    this.setState({
+      loading: false,
+      fav: fjoined
+    })
+
+      return(     <View style={{ display: 'none' }}>
+            <LinksScreen fav={this.state.fav} />
+            {console.log('cal')}
           </View>
 
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
-        </View>
 
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+      )
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
+    }
 
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
+
+
+
+
+
+  render() {
+
+
+
+
+
+    const cards=this.state.data.map(hero=>{
+        return(
+
+        <Cardsv hero={hero} key={hero.id} fav={this.favourite}/>
+        )
+
+
+
+});
+    return (
+        <View style={styles.container}>
+
+          <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+
+
+            <View className="row">
+
+              {cards}
+            </View>
+
+            {console.log(cards)}
+
+
+
+
+          </ScrollView>
+
+
+
         </View>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 HomeScreen.navigationOptions = {
@@ -89,10 +145,12 @@ function handleHelpPress() {
   );
 }
 
+export default HomeScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ddd',
   },
   developmentModeText: {
     marginBottom: 20,

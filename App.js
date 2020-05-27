@@ -9,14 +9,17 @@ import LinkingConfiguration from './navigation/LinkingConfiguration';
 
 const Stack = createStackNavigator();
 
-export default function App(props) {
-  const isLoadingComplete = useCachedResources();
+class App extends React.Component{
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
+
+
+
+
+  render(){
+
     return (
       <View style={styles.container}>
+
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
@@ -25,12 +28,14 @@ export default function App(props) {
         </NavigationContainer>
       </View>
     );
-  }
-}
 
+    }
+
+}
+export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+
   },
 });
