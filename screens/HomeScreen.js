@@ -4,6 +4,7 @@ import {Dimensions, Image, Platform, StyleSheet, Text, TouchableOpacity, View} f
 import { ScrollView } from 'react-native-gesture-handler';
 import LinksScreen from "./LinksScreen";
 import Cardsv from "./cards";
+import { AsyncStorage } from "react-native";
 
 import { MonoText } from '../components/StyledText';
 
@@ -17,52 +18,56 @@ class HomeScreen extends React.Component {
         fav:[]
 
       };
-      this.favourite=this.favourite.bind(this)
+      // this.favourite=this.favourite.bind(this)
     }
 
 
 
-        componentDidMount()
-        {
-          for (var i = 341; i <= 346; i++) {
+      //   componentDidMount()
+      //   {
+      //     for (var i = 341; i <= 346; i++) {
+      //
+      //     fetch(`https://www.superheroapi.com/api.php/1340448086165241/${i}`)
+      //         .then(response => response.json())
+      //         .then((responseJson) => {
+      //
+      //           console.log(responseJson)
+      //           var joined = this.state.data.concat(responseJson);
+      //
+      //           this.setState({
+      //             loading: false,
+      //             data: joined
+      //           })
+      //         })
+      //
+      //
+      //   }
+      //
+      // }
 
-          fetch(`https://www.superheroapi.com/api.php/1340448086165241/${i}`)
-              .then(response => response.json())
-              .then((responseJson) => {
-
-                console.log(responseJson)
-                var joined = this.state.data.concat(responseJson);
-
-                this.setState({
-                  loading: false,
-                  data: joined
-                })
-              })
-
-
-        }
-
-      }
-
-  favourite(e){
-      console.log(this.state.fav)
-    var fjoined = this.state.fav.concat(e);
-
-    this.setState({
-      loading: false,
-      fav: fjoined
-    })
-
-      return(     <View style={{ display: 'none' }}>
-            <LinksScreen fav={this.state.fav} />
-            {console.log('cal')}
-          </View>
-
-
-      )
-
-    }
-
+// favourite(e) {
+//     console.log(this.state.fav)
+//     var fjoined = this.state.fav.concat(e);
+//
+//     this.setState({
+//           loading: false,
+//           fav: fjoined
+//         }
+//     )
+//     // create a function that saves your data asyncronously
+//
+//     // as();
+//
+//   }
+  // async function as() {
+  //   try {
+  //     await AsyncStorage.setItem('fav', this.state.fav);
+  //     console.log('done')
+  //
+  //   } catch (error) {
+  //     // Error saving data
+  //   }
+  // }
 
 
 
@@ -74,10 +79,10 @@ class HomeScreen extends React.Component {
 
 
 
-    const cards=this.state.data.map(hero=>{
+    const cards=this.props.data.map(hero=>{
         return(
 
-        <Cardsv hero={hero} key={hero.id} fav={this.favourite}/>
+        <Cardsv hero={hero} key={hero.id} fav={this.props.fav} favlist={this.props.favlist} del={this.props.del}/>
         )
 
 

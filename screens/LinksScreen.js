@@ -10,33 +10,36 @@ import { MonoText } from '../components/StyledText';
 class LinksScreen extends React.Component {
 
 
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       loading: true,
-      fav: [],
+      data: [],
+      fav:[]
 
-
-// this.favcopy=this.favcopy.bind(this)
-
+    };
+    // this.favcopy=this.favourite.bind(this)
   }
 
 
 
 
-
-
-  favcopy=() =>{
-
-
-  console.log('her')
-  this.setState({fav: this.props.fav})}
-
+  //
+  // favcopy=() =>{
+  //
+  //
+  // console.log('her')
+  // console.log(this.props)
+  // this.setState({fav: this.props.fav})}
+  //
 
 
   render() {
-    const cards=this.state.fav.map(hero=>{
+      // console.log(this.props)
+    const cards=this.props.favlist.map(hero=>{
       return(
 
-          <Cardsv hero={hero} key={hero.id}/>
+          <Cardsv hero={hero} key={hero.id} favlist={this.props.favlist}/>
       )
 
 
@@ -48,7 +51,7 @@ class LinksScreen extends React.Component {
 
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-            {this.favcopy}
+            {/*{this.favcopy()}*/}
             <View className="row">
 
               {cards}

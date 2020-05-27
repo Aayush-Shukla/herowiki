@@ -1,9 +1,17 @@
 import * as React from 'react';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 import { Dimensions } from "react-native";
+import { AsyncStorage } from "react-native";
 
 
-
+function contains(arr, element) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === element) {
+            return true;
+        }
+    }
+    return false;
+}
 export default function Cardsv(props) {
 
 
@@ -25,15 +33,11 @@ export default function Cardsv(props) {
             <CardAction
                 separator={true}
                 inColumn={false}>
-                <CardButton
-                    onPress={() => {}}
-                    title="Push"
-                    color="blue"
-                />
+
 
                 <CardButton
-                    onPress={() => {props.fav(props.hero)}}
-                    title="Add to Favourite"
+                    onPress={() => {contains(props.favlist,props.hero)?props.del(props.hero):props.fav(props.hero)}}
+                    title={contains(props.favlist,props.hero)?"Remove from Favourite":"Add to Favourite"}
                     color="blue"
                 />
             </CardAction>

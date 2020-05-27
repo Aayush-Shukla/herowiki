@@ -8,7 +8,75 @@ import LinksScreen from '../screens/LinksScreen';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
-export default function BottomTabNavigator({ navigation, route }) {
+class BottomTabNavigator extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+data:[],
+            fav:[]
+
+        };
+        this.favourite=this.favourite.bind(this)
+        this.del=this.del.bind(this)
+    }
+
+
+del(e){
+        var valuesToRemove=[e]
+    var filteredItems = this.state.fav.filter(e => !valuesToRemove.includes(e))
+    this.setState({fav:filteredItems})
+}
+
+    favourite(e) {
+        console.log(this.state.fav)
+        var fjoined = this.state.fav.concat(e);
+
+        this.setState({
+                loading: false,
+                fav: fjoined
+            }
+        )
+        // create a function that saves your data asyncronously
+
+        // as();
+
+    }
+    componentDidMount()
+    {
+        for (var i = 341; i <= 346; i++) {
+
+            fetch(`https://www.superheroapi.com/api.php/1340448086165241/${i}`)
+                .then(response => response.json())
+                .then((responseJson) => {
+
+                    console.log(responseJson)
+                    var joined = this.state.data.concat(responseJson);
+
+                    this.setState({
+                        loading: false,
+                        data: joined
+                    })
+                })
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+        render() {
+            const { navigation, route } = this.props;
+
+
+
+
 
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
@@ -16,7 +84,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={HomeScreen}
+        component={ () => <HomeScreen fav={this.favourite} data={this.state.data} favlist={this.state.fav} del={this.del} />}
 
         options={{
           title: 'HOME',
@@ -25,16 +93,16 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Links"
-        component={LinksScreen}
+        component={()=><LinksScreen favlist={this.state.fav}/> }
         options={{
           title: 'Favourites',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-star" />,
         }}
       />
     </BottomTab.Navigator>
-  );
+  );}
 }
-
+export default BottomTabNavigator
 function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
