@@ -4,6 +4,7 @@ import * as React from 'react';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import DetailsScreen from "../screens/Detail";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -46,11 +47,11 @@ del(e){
     {
         for (var i = 341; i <= 346; i++) {
 
-            fetch(`https://www.superheroapi.com/api.php/1340448086165241/${i}`)
+             fetch(`https://www.superheroapi.com/api.php/1340448086165241/${i}`)
                 .then(response => response.json())
                 .then((responseJson) => {
 
-                    console.log(responseJson)
+                    // console.log(responseJson)
                     var joined = this.state.data.concat(responseJson);
 
                     this.setState({
