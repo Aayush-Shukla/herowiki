@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 import { Dimensions } from "react-native";
-// import { createStackNavigator, createBottomTabNavigator } from '@react-navigation';
-// import { AsyncStorage } from "react-native";
-// import { createAppContainer } from '@react-navigation';
-//
-// import { createStackNavigator} from '@react-navigation-stack';
-// import DetailsScreen from "./Detail";
+
 
 function contains(arr, element) {
     for (let i = 0; i < arr.length; i++) {
@@ -51,11 +46,15 @@ Occupation : ${props.hero.work.occupation}\nBase : ${props.hero.work.base}\n
 CONNECTIONS:\n
 Group Affiliation : ${props.hero.connections['group-affiliation']}\nRelatives : ${props.hero.connections.relatives}`}
 
-
+if (props.searched==='false'){
+    var opt=contains(props.favlist,props.hero)?"Remove from Favourite":"Add to Favourite"
+}
+else{ var opt=''
+console.log('else')}
         return (
 
 
-            <Card style={{ marginBottom:30, width:0.80*Dimensions.get('window') }} onPress={this.toggleBox}>
+            <Card style={{ marginBottom:30 }} onPress={this.toggleBox}>
                 <CardImage
                     source={{uri: props.hero.image.url}}
                     resizeMode='contain'
@@ -77,7 +76,7 @@ Group Affiliation : ${props.hero.connections['group-affiliation']}\nRelatives : 
 
                     <CardButton
                         onPress={() => {contains(props.favlist,props.hero)?props.del(props.hero):props.fav(props.hero)}}
-                        title={props.searched?"":contains(props.favlist,props.hero)?"Remove from Favourite":"Add to Favourite"}
+                        title={opt}
                         color="blue"
                     />
                 </CardAction>

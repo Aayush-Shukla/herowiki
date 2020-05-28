@@ -5,9 +5,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import Cardsv from "./cards";
 
-import { MonoText } from '../components/StyledText';
 
-class LinksScreen extends React.Component {
+
+class FavScreen extends React.Component {
 
 
   constructor(props) {
@@ -39,7 +39,7 @@ class LinksScreen extends React.Component {
     const cards=this.props.favlist.map(hero=>{
       return(
 
-          <Cardsv hero={hero} key={hero.id} favlist={this.props.favlist} searched='false'/>
+          <Cardsv hero={hero} key={hero.id} favlist={this.props.favlist} searched='false' del={this.props.del}/>
       )
 
 
@@ -72,7 +72,7 @@ class LinksScreen extends React.Component {
   }
 }
 
-LinksScreen.navigationOptions = {
+FavScreen.navigationOptions = {
   header: null,
 };
 
@@ -109,7 +109,7 @@ function handleHelpPress() {
   );
 }
 
-export default LinksScreen;
+export default FavScreen;
 
 const styles = StyleSheet.create({
   container: {

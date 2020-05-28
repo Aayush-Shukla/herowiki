@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import DetailsScreen from "../screens/Detail";
+import FavScreen from '../screens/FavScreen';
+import Searchtab from "../screens/Searchtab";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -38,9 +38,7 @@ del(e){
                 fav: fjoined
             }
         )
-        // create a function that saves your data asyncronously
 
-        // as();
 
     }
     componentDidMount()
@@ -94,7 +92,7 @@ del(e){
       />
       <BottomTab.Screen
         name="Links"
-        component={()=><LinksScreen favlist={this.state.fav}/> }
+        component={()=><FavScreen favlist={this.state.fav} del={this.del}/> }
         options={{
           title: 'Favourites',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-star" />,
@@ -102,7 +100,7 @@ del(e){
       />
       <BottomTab.Screen
         name="Search"
-        component={()=><DetailsScreen/> }
+        component={Searchtab }
         options={{
           title: 'Search',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,

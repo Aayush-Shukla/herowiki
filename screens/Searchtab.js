@@ -1,13 +1,13 @@
-// import { SearchBar } from 'react-native-elements';
+
 import * as React from 'react';
 import Cardsv from "./cards";
 import {Platform, StyleSheet, View} from "react-native";
 import {ScrollView} from "react-native-gesture-handler";
-// import SearchBar from 'react-native-search-bar';
+
 import { Searchbar } from 'react-native-paper';
 
 
-export default class DetailsScreen extends React.Component {
+export default class Searchtab extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,21 +20,45 @@ export default class DetailsScreen extends React.Component {
     }
 
         updateSearch()  {
-        console.log("in")
+        if(isNaN(this.state.searchQuery)) {
+            {console.log(`https://www.superheroapi.com/api.php/1340448086165241/${this.state.searchQuery}`)}
 
-            fetch(`https://www.superheroapi.com/api.php/1340448086165241/search/${this.state.searchQuery}`)
+
+                fetch(`https://www.superheroapi.com/api.php/1340448086165241/search/${this.state.searchQuery}`)
                 .then(response => response.json())
 
                 .then((responseJson) => {
-                    console.log(responseJson,`https://www.superheroapi.com/api.php/1340448086165241/search/${this.state.searchQuery}`,this.state.searchQuery)
-                    // console.log(responseJson)
-                    // var joined = this.state.data.concat(responseJson);
-                if (responseJson.response!='error'){
-                    this.setState({
-                        loading: false,
-                        search: responseJson.results
-                    })}
+
+
+                    if (responseJson.response != 'error') {
+                        this.setState({
+                            loading: false,
+                            search: responseJson.results
+                        })
+                    }
+                    console.log(this.state.search)
                 })
+        }
+        else
+        {console.log(`https://www.superheroapi.com/api.php/1340448086165241/${this.state.searchQuery}`)
+            var result = [];
+            fetch(`https://www.superheroapi.com/api.php/1340448086165241/${this.state.searchQuery}`)
+
+                .then(response => response.json())
+
+                .then((responseJson) => {
+                    result.push(responseJson)
+
+
+                    if (responseJson.response!='error'){
+                        this.setState({
+                            loading: false,
+                            search: result
+                        })}
+                    console.log(this.state.search)
+                })
+
+        }
 
 
 

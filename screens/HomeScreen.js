@@ -2,11 +2,8 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {Dimensions, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import LinksScreen from "./LinksScreen";
-import Cardsv from "./cards";
-import { AsyncStorage } from "react-native";
 
-import { MonoText } from '../components/StyledText';
+import Cardsv from "./cards";
 
 class HomeScreen extends React.Component {
 
