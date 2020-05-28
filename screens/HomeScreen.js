@@ -82,7 +82,7 @@ class HomeScreen extends React.Component {
     const cards=this.props.data.map(hero=>{
         return(
 
-        <Cardsv hero={hero} key={hero.id} fav={this.props.fav} favlist={this.props.favlist} del={this.props.del}/>
+        <Cardsv hero={hero} key={hero.id} fav={this.props.fav} favlist={this.props.favlist} del={this.props.del} searched='false'/>
         )
 
 

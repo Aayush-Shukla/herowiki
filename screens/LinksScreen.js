@@ -39,7 +39,7 @@ class LinksScreen extends React.Component {
     const cards=this.props.favlist.map(hero=>{
       return(
 
-          <Cardsv hero={hero} key={hero.id} favlist={this.props.favlist}/>
+          <Cardsv hero={hero} key={hero.id} favlist={this.props.favlist} searched='false'/>
       )
 
 

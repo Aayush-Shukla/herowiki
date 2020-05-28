@@ -100,6 +100,14 @@ del(e){
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-star" />,
         }}
       />
+      <BottomTab.Screen
+        name="Search"
+        component={()=><DetailsScreen/> }
+        options={{
+          title: 'Search',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+        }}
+      />
     </BottomTab.Navigator>
   );}
 }
@@ -112,5 +120,7 @@ function getHeaderTitle(route) {
       return 'SUPERHEROS';
     case 'Links':
       return 'FAVOURITES';
+      case 'Search':
+          return "SEARCH";
   }
 }

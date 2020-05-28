@@ -77,7 +77,7 @@ Group Affiliation : ${props.hero.connections['group-affiliation']}\nRelatives : 
 
                     <CardButton
                         onPress={() => {contains(props.favlist,props.hero)?props.del(props.hero):props.fav(props.hero)}}
-                        title={contains(props.favlist,props.hero)?"Remove from Favourite":"Add to Favourite"}
+                        title={props.searched?"":contains(props.favlist,props.hero)?"Remove from Favourite":"Add to Favourite"}
                         color="blue"
                     />
                 </CardAction>
