@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import FavScreen from '../screens/FavScreen';
 import Searchtab from "../screens/Searchtab";
+import { AsyncStorage } from 'react-native';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -16,6 +17,7 @@ class BottomTabNavigator extends React.Component{
             loading: true,
 data:[],
             fav:[]
+
 
         };
         this.favourite=this.favourite.bind(this)
@@ -40,7 +42,18 @@ del(e){
         )
 
 
+
+
+
     }
+
+
+
+
+
+
+
+
     componentDidMount()
     {
         for (var i = 341; i <= 346; i++) {

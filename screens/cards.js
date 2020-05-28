@@ -38,7 +38,7 @@ if(this.state.opened){
         `POWERSTATS:\n
 Intelligence : ${props.hero.powerstats.intelligence} \nStrength : ${props.hero.powerstats.strength} \nSpeed : ${props.hero.powerstats.speed} \nDurability : ${props.hero.powerstats.durability} \nCombat : ${props.hero.powerstats.combat} \n
 BIOGRAPHY:\n
-Full name : ${props.hero.biography['full-name']} \nAlter Ego : ${props.hero.biography['alter-egos']} \nALiases : ${props.hero['biography.aliases']} \nPlace Of Birth : ${props.hero.biography['place-of-birth']}\nFirst Appearance : ${props.hero.biography['first-appearance']}\nPublisher : ${props.hero.biography.publisher}\nAlignment : ${props.hero.biography.alignment}\n
+Full name : ${props.hero.biography['full-name']} \nAlter Ego : ${props.hero.biography['alter-egos']} \nALiases : ${props.hero.biography['aliases']} \nPlace Of Birth : ${props.hero.biography['place-of-birth']}\nFirst Appearance : ${props.hero.biography['first-appearance']}\nPublisher : ${props.hero.biography.publisher}\nAlignment : ${props.hero.biography.alignment}\n
 APPEARANCE:\n
 Gender : ${props.hero.appearance.gender}\nRace : ${props.hero.appearance.race}\nHeight : ${props.hero.appearance.height}\nWeight : ${props.hero.appearance.weight}\nEye Colour : ${props.hero.appearance['eye-color']}\nHair Colour : ${props.hero.appearance['hair-color']}\n
 WORK:\n
@@ -64,6 +64,7 @@ console.log('else')}
             />
                 <CardTitle
                     title={props.hero.name}
+                    subtitle={props.hero.id}
 
                 />
                 <CardContent text={s}  />
