@@ -13,4 +13,5 @@ In the project directory, run:
 - [x] Homepage to display heroes from 341 to 346
 - [x] Clicking superhero displays its details
 - [x] Adding favourite superheroes
+- [ ] Saving favourite heroes in persistent storage
 - [x] Search page to serch superheroes by name or id
