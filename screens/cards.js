@@ -31,7 +31,7 @@ export default class Cardsv extends React.Component {
         const {
             props,
         } = this;
-        // const { opened } = this.state;
+
 if(this.state.opened){
     console.log(props.hero.biography['full-name'])
     var s=
@@ -86,8 +86,3 @@ console.log('else')}
     );
     }
 }
-// const DetailStack = createStackNavigator({
-//     // Home: { screen: HomeScreen },
-//     Details: { screen: DetailsScreen },
-// });
-// const DetailContainer=createAppContainer(DetailStack)
