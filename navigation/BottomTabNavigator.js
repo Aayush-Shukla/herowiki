@@ -91,12 +91,14 @@ del(e){
 
 
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  const favnav=()=> (<FavScreen favlist={this.state.fav} del={this.del}/>);
+  const  homenav=()=> (<HomeScreen fav={this.favourite} data={this.state.data} favlist={this.state.fav} del={this.del} />);
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={ () => <HomeScreen fav={this.favourite} data={this.state.data} favlist={this.state.fav} del={this.del} />}
+        component={ homenav}
 
         options={{
           title: 'HOME',
@@ -105,7 +107,7 @@ del(e){
       />
       <BottomTab.Screen
         name="Links"
-        component={()=><FavScreen favlist={this.state.fav} del={this.del}/> }
+        component={favnav}
         options={{
           title: 'Favourites',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-star" />,
